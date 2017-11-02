@@ -1,42 +1,31 @@
-import React from 'react';
-import { StyleSheet, Text, View, FlatList, Platform } from 'react-native';
-import { TabNavigator } from 'react-navigation'
+import React, { Component } from 'react';
+import { Text, View, FlatList, Platform } from 'react-native';
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import { FontAwesome } from '@expo/vector-icons'
-import initialState from './src/utils/asyncStorage'
+import { getDecks, addInitialDecks } from './utils/storage'
+import DeckList from  './components/DeckList'
+import DeckView from  './components/DeckView'
+import NewDeck from  './components/NewDeckView'
+import styles from './utils/styles'
 
 // TODO: Extract in utils/colors
 const white = '#fff'
 const black = '#000'
 const shadow = 'rgba(0, 0, 0, 0.24)'
 
-// TODO: Fill in functionality and extract in its own file
-const DeckList = () => (
-  <View style={styles.container}>
-      <Text>DecksList!</Text>
-      <Text>{JSON.stringify(initialState)}</Text>
-  </View>
-);
-
-// TODO: Fill in functionality and extract in its own file
-const Quizes = () => (
-  <View style={styles.container}>
-    <Text>Quizes!</Text>
-  </View>
-);
-
 const Tabs = TabNavigator({
-  DeckList: {
+  Decks: {
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Decks',
       tabBarIcon: ({tintColor}) => <FontAwesome name='clone' size={28} color={tintColor}/>
     }
   },
-  Quizes: {
-    screen: Quizes,
+  NewDeck: {
+    screen: NewDeck,
     navigationOptions: {
-      tabBarLabel: 'Quizes',
-      tabBarIcon: ({tintColor}) => <FontAwesome name='question-circle-o' size={28} color={tintColor}/>
+      tabBarLabel: 'New Deck',
+      tabBarIcon: ({tintColor}) => <FontAwesome name='plus-square-o' size={28} color={tintColor}/>
     }
   }, 
 }, {
@@ -59,20 +48,36 @@ const Tabs = TabNavigator({
   }
 })
 
-export default class App extends React.Component {
+
+
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs,
+  },
+  DeckView: {
+    screen: DeckView,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'red',
+      }
+    }
+  }
+})
+
+export default class App extends Component {
+
+  componentDidMount(){
+    addInitialDecks().done(
+      getDecks().done((t)=>{
+        this.setState(t);
+    }));
+  }
+
   render() {
+
     return (
-      <Tabs />
+      <MainNavigator />
     );
   }
 }
-
-// TODO: Convert to styled components
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
