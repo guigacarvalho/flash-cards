@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, View, FlatList, Platform } from 'react-native';
+import { Text, TextInput, View, TouchableOpacity, Platform } from 'react-native';
 import styles from '../utils/styles'
 
 
@@ -10,12 +10,17 @@ class NewDeck extends Component {
     }
     render() {
         return (
-            <View style={styles.container}>
-                <Text>New Deck</Text>
+            <View style={styles.containerTop}>
+                <Text style={styles.bigTitle}>New Deck</Text>
                 <TextInput
-                    style={{maxHeight: 40, margin: 10, width: 250, borderColor: 'gray', borderWidth: 1}}
+                    style={styles.txtField}
                     onChangeText={(text) => this.setState({text})}
                     value={this.state.text}/>
+                <TouchableOpacity style={styles.blackBtn} onPress={() => this.props.navigation.navigate('NewCard', { deckId })}>
+                    <Text style={styles.whiteTxt}>
+                        Add Deck
+                    </Text>
+                </TouchableOpacity>
             </View>
         );
     }

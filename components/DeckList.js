@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Platform } from 'react-native';
 import { getDecks } from '../utils/storage'
-
+import styles from '../utils/styles'
 
 class DeckList extends Component {
     componentDidMount(){
@@ -18,10 +18,10 @@ class DeckList extends Component {
         return Object.keys(this.state).map((deck, index) => {
             const { title, questions } = this.state[deck];
             return (<TouchableOpacity key={index} style={styles.deck} onPress={() => this.props.navigation.navigate('DeckView', { deckId: deck })}>
-                <Text style={{ fontSize: 20 }}>
+                <Text style={styles.title}>
                     {title}
                 </Text>
-                <Text style={{ fontSize: 16, color: 'red' }}>
+                <Text style={styles.subtitle}>
                     {questions.length} questions
                 </Text>
             </TouchableOpacity>);
@@ -30,10 +30,13 @@ class DeckList extends Component {
 
     render () {
         return (
-            <View style={styles.container}>
+            <View style={styles.containerTop}>
+            <Text style={styles.bigTitle}>
+                Decks List
+            </Text>
                 {
                   !!this.state ? 
-                        this.renderDeckList()
+                    this.renderDeckList()
                     : <Text>Loading...</Text>
                 }
             </View>
@@ -41,23 +44,4 @@ class DeckList extends Component {
     }
   }
   
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-  },
-  deck:{
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 10,
-    marginTop: 10,
-    padding: 10,
-    borderColor: 'gray',    
-    borderBottomWidth: 1,
-    maxHeight: 90,
-  }
-});
-
 export default DeckList

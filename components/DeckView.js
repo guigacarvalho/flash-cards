@@ -18,18 +18,18 @@ class DeckView extends Component {
 
     renderDeck(deckId) {
         return (<View style={styles.container}>
-            <Text style={{ fontSize: 30 }}>
+            <Text style={styles.bigTitle}>
                 {deckId}
             </Text>
-            <Text style={{ fontSize: 20 }}>
+            <Text style={styles.title}>
                 {this.state[deckId].questions.length} questions
             </Text>
-            <TouchableOpacity style={styles.whiteBtn} onPress={() => this.props.navigation.navigate('QuizView', { deckId })}>
+            <TouchableOpacity style={styles.whiteBtn} onPress={() => this.props.navigation.navigate('NewCard', { deckId })}>
                 <Text style={styles.blackTxt}>
                     Add a card
                 </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.blackBtn} onPress={() => this.props.navigation.navigate('QuizView', { deckId })}>
+            <TouchableOpacity style={styles.blackBtn} onPress={() => this.props.navigation.navigate('NewQuiz', { deckId })}>
                 <Text style={styles.whiteTxt}>
                     Start a quiz
                 </Text>
