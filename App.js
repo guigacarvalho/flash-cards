@@ -6,6 +6,8 @@ import { getDecks, addInitialDecks } from './utils/storage'
 import DeckList from  './components/DeckList'
 import DeckView from  './components/DeckView'
 import NewDeck from  './components/NewDeckView'
+import NewCard from './components/NewCardView'
+import NewQuiz from './components/NewQuizView'
 import styles from './utils/styles'
 
 // TODO: Extract in utils/colors
@@ -56,6 +58,24 @@ const MainNavigator = StackNavigator({
   },
   DeckView: {
     screen: DeckView,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'red',
+      }
+    }
+  },
+  NewCard: {
+    screen: NewCard,
+    navigationOptions: {
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: 'red',
+      }
+    }
+  },
+  NewQuiz: {
+    screen: NewQuiz,
     navigationOptions: {
       headerTintColor: 'white',
       headerStyle: {
