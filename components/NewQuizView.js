@@ -73,10 +73,13 @@ class NewCard extends Component {
             <Text style={styles.bigTitle}>{title} Quiz {currentQuestion + 1}/{questions.length}</Text>
             { finishedQuiz ? 
                 // Finished quiz screen
-                <View>
+                <View style={styles.container}>
                     <Text style={styles.title}>Congrats!</Text>
-                    <View>
+                    <View > 
                         <Text style={styles.subtitle}>You answered {this.state.correctAnswers} correctly!</Text>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')} style={styles.blackBtn}>
+                            <Text style={styles.whiteTxt}>Deck List</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             :
