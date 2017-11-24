@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View, TouchableOpacity, Platform } from 'react-native';
 import styles from '../utils/styles'
+import { addDeck } from '../utils/storage';
 
 
 class NewDeck extends Component {
@@ -8,6 +9,13 @@ class NewDeck extends Component {
         super(props);
         this.state = { text: 'Deck Title' };
     }
+
+    addNewDeck () {
+        const deckTitle = this.state.text
+        addDeck(deckTitle);
+        this.props.navigation.navigate('Home')
+    }
+
     render() {
         return (
             <View style={styles.containerTop}>
@@ -16,7 +24,7 @@ class NewDeck extends Component {
                     style={styles.txtField}
                     onChangeText={(text) => this.setState({text})}
                     value={this.state.text}/>
-                <TouchableOpacity style={styles.blackBtn} onPress={() => this.props.navigation.navigate('NewCard', { deckId })}>
+                <TouchableOpacity style={styles.blackBtn} onPress={() => this.addNewDeck()}>
                     <Text style={styles.whiteTxt}>
                         Add Deck
                     </Text>
