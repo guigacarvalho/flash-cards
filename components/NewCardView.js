@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TextInput, View, TouchableOpacity, Platform } from 'react-native';
 import styles from '../utils/styles'
+import { addCardToDeck, getDeck, getDecks } from '../utils/storage'
 
 class NewCard extends Component {
     constructor(props) {
@@ -19,9 +20,15 @@ class NewCard extends Component {
     }
 
     addCard () {
-        const { deckId } = this.props.navigation.state.params        
-        console.log('Add f.. card!!')
-        console.debug(deckId)
+        const { deckId } = this.props.navigation.state.params
+        const card = {
+            question: this.state.question,
+            answer: this.state.answer,
+        };
+        getDeck(deckId).then((deck)=>{
+            addCardToDeck(card, deck);
+        });
+        this.props.navigation.goBack()
     }
 
     render() {
