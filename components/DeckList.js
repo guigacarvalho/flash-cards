@@ -9,6 +9,12 @@ class DeckList extends Component {
         this.setState(t);
       })
     }
+    
+    componentWillUpdate() {
+      getDecks().done((t)=>{
+        this.setState(t);
+      })
+    }
   
     navigateHome = () => {
       this.props.navigation.dispatch(NavigationActions.back({key: 'AddEntry'}))

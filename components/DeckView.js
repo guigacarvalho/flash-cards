@@ -9,6 +9,13 @@ class DeckView extends Component {
         this.setState(t);
       })
     }
+    
+    componentWillUpdate() {
+      getDecks().done((t)=>{
+        this.setState(t);
+      })  
+    }
+
     static navigationOptions = ({ navigation }) => {
         const { deckId } = navigation.state.params
         return {
