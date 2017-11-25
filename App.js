@@ -9,11 +9,7 @@ import NewDeck from  './components/NewDeckView'
 import NewCard from './components/NewCardView'
 import NewQuiz from './components/NewQuizView'
 import styles from './utils/styles'
-
-// TODO: Extract in utils/colors
-const white = '#fff'
-const black = '#000'
-const shadow = 'rgba(0, 0, 0, 0.24)'
+import { white, black, red, green, shadow } from './utils/colors'
 
 const Tabs = TabNavigator({
   Decks: {
@@ -59,27 +55,27 @@ const MainNavigator = StackNavigator({
   DeckView: {
     screen: DeckView,
     navigationOptions: {
-      headerTintColor: 'white',
+      headerTintColor: white,
       headerStyle: {
-        backgroundColor: 'red',
+        backgroundColor: red,
       }
     }
   },
   NewCard: {
     screen: NewCard,
     navigationOptions: {
-      headerTintColor: 'white',
+      headerTintColor: white,
       headerStyle: {
-        backgroundColor: 'red',
+        backgroundColor: red,
       }
     }
   },
   NewQuiz: {
     screen: NewQuiz,
     navigationOptions: {
-      headerTintColor: 'white',
+      headerTintColor: white,
       headerStyle: {
-        backgroundColor: 'red',
+        backgroundColor: red,
       }
     }
   }

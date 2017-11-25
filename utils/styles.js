@@ -1,14 +1,15 @@
 import { StyleSheet } from 'react-native'
+import { white, black, red, green, shadow } from './colors'
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fff',
+        backgroundColor: white,
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
     containerTop: {
-        backgroundColor: '#fff',
+        backgroundColor: white,
         flex: 1,
         justifyContent: 'flex-start',
         paddingTop: 20,
@@ -16,8 +17,8 @@ const styles = StyleSheet.create({
     blackBtn: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'black',
-        borderColor: 'black',
+        backgroundColor: black,
+        borderColor: black,
         width: 200,
         margin: 5,
         borderWidth: 2,
@@ -29,8 +30,8 @@ const styles = StyleSheet.create({
     whiteBtn: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white',
-        borderColor: 'black',
+        backgroundColor: white,
+        borderColor: black,
         width: 200,
         margin: 5,
         borderWidth: 2,
@@ -42,8 +43,8 @@ const styles = StyleSheet.create({
     redBtn: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'red',
-        borderColor: 'red',
+        backgroundColor: red,
+        borderColor: red,
         width: 200,
         margin: 5,
         borderWidth: 2,
@@ -55,8 +56,8 @@ const styles = StyleSheet.create({
     greenBtn: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'green',
-        borderColor: 'green',
+        backgroundColor: green,
+        borderColor: green,
         width: 200,
         margin: 5,
         borderWidth: 2,
@@ -66,21 +67,21 @@ const styles = StyleSheet.create({
         paddingRight: 25,
     },
     redTxt: {
-        color: 'red',
+        color: red,
     },
     whiteTxt: {
         fontSize: 20,
-        color: 'white',
+        color: white,
     },
     blackTxt: {
         fontSize: 20,
-        color: 'black',
+        color: black,
     },
     txtField: {
         maxHeight: 50, 
         margin: 5, 
         width: 250, 
-        borderColor: 'black', 
+        borderColor: black, 
         borderRadius: 3,
         borderWidth: 2,
     },
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: 16, 
-        color: 'red',
+        color: red,
         textAlign: 'center'
     },
     deck:{
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
         margin: 10,
         marginTop: 10,
         padding: 10,
-        borderColor: 'gray',    
+        borderColor: shadow,    
         borderBottomWidth: 1,
         maxHeight: 90,
       }
