@@ -18,13 +18,21 @@ class NewCard extends Component {
         }
     }
 
+    restartQuiz () {
+        this.setState({
+            displayQuestion: true,
+            correctAnswers: 0,
+            currentQuestion: 0,
+            finishedQuiz: false,
+        });
+    }
+
     toggleQuestionAnswer() {
         const newDisplayQuestion = !this.state.displayQuestion;
         this.setState({displayQuestion: newDisplayQuestion});
     }
 
     goToNextQuestion = () => {
-
         const questionsTotal = this.state.questions.length;
         const currentQuestionIndex = this.state.currentQuestion;
         const nextQuestionIndex = currentQuestionIndex + 1;
@@ -59,30 +67,39 @@ class NewCard extends Component {
     render() {        
         return (
             !!this.state && !!this.state.questions ?  
-            this.renderQuestion()
+            this.renderQuiz()
             : <Text>Loading...</Text>
         );
     }
 
-    renderQuestion() {
-        const { title, questions, finishedQuiz, currentQuestion, displayQuestion } = this.state
-        const questionNumber = currentQuestion || 0;
-        const questionText = questions[questionNumber].question
-        const answerText = questions[questionNumber].answer
-        return <View style={styles.containerTop}>
-            <Text style={styles.bigTitle}>{title} Quiz {currentQuestion + 1}/{questions.length}</Text>
-            { finishedQuiz ? 
-                // Finished quiz screen
-                <View style={styles.container}>
-                    <Text style={styles.title}>Congrats!</Text>
-                    <View > 
-                        <Text style={styles.subtitle}>You answered {this.state.correctAnswers} correctly!</Text>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Home')} style={styles.blackBtn}>
-                            <Text style={styles.whiteTxt}>Deck List</Text>
+    renderFinishedQuiz() {
+        const { questions, correctAnswers} = this.state
+
+        return (
+            <View style={styles.container}>
+                <Text style={styles.title}>Congrats!</Text>
+                <View > 
+                    <Text style={styles.subtitle}>You answered {(correctAnswers/questions.length)*100}% of the questions correctly!</Text>
+                    <View style={styles.container}> 
+                        <TouchableOpacity onPress={() => this.restartQuiz()} style={styles.blackBtn}>
+                            <Text style={styles.whiteTxt}>Restart Quiz</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.navigation.goBack()} style={styles.blackBtn}>
+                            <Text style={styles.whiteTxt}>Return to Deck</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
-            :
+            </View>
+        )
+    }
+
+    renderQuestion() {
+        const { currentQuestion, questions, displayQuestion } = this.state
+        const questionNumber = currentQuestion || 0;
+        const questionText = questions[questionNumber].question
+        const answerText = questions[questionNumber].answer
+
+        return (
             <View style={styles.container}>
                 {/* Questions and answers text */}
                 <View>
@@ -109,8 +126,14 @@ class NewCard extends Component {
                     </Text>
                 </TouchableOpacity>
             </View>
-            }
-            
+        )
+    }
+
+    renderQuiz() {
+        const { title, questions, finishedQuiz, currentQuestion } = this.state
+        return <View style={styles.containerTop}>
+            <Text style={styles.bigTitle}>{title} Quiz {currentQuestion + 1}/{questions.length}</Text>
+            { finishedQuiz ? this.renderFinishedQuiz() : this.renderQuestion() }
         </View>;
     }
 }
