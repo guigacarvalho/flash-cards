@@ -24,23 +24,28 @@ class DeckView extends Component {
     }
 
     renderDeck(deckId) {
+        // debugger;
+        const { questions } = this.state[deckId] ? this.state[deckId] : {questions:[]}
         return (<View style={styles.container}>
             <Text style={styles.bigTitle}>
                 {deckId}
             </Text>
             <Text style={styles.title}>
-                {this.state[deckId].questions.length} questions
+                {questions.length} questions
             </Text>
             <TouchableOpacity style={styles.whiteBtn} onPress={() => this.props.navigation.navigate('NewCard', { deckId })}>
                 <Text style={styles.blackTxt}>
                     Add a card
                 </Text>
             </TouchableOpacity>
+            { questions.length > 0 ? 
             <TouchableOpacity style={styles.blackBtn} onPress={() => this.props.navigation.navigate('NewQuiz', { deckId })}>
                 <Text style={styles.whiteTxt}>
                     Start a quiz
                 </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> : <View></View>
+            
+        }
         </View>)
     }
 

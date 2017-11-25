@@ -13,7 +13,7 @@ class NewDeck extends Component {
     addNewDeck () {
         const deckTitle = this.state.text
         addDeck(deckTitle);
-        this.props.navigation.navigate('Home')
+        this.props.navigation.navigate('DeckView', { deckId: deckTitle })
     }
 
     render() {
