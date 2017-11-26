@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 import styles from '../utils/styles'
 import { getDecks } from '../utils/storage'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class NewCard extends Component {
     state = {
@@ -72,8 +73,15 @@ class NewCard extends Component {
         );
     }
 
+    resetNotifications() {
+        clearLocalNotification()
+            .then(setLocalNotification)
+    }
+
     renderFinishedQuiz() {
         const { questions, correctAnswers} = this.state
+
+        this.resetNotifications()
 
         return (
             <View style={styles.container}>

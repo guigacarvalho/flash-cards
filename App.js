@@ -9,6 +9,7 @@ import NewDeck from  './components/NewDeckView'
 import NewCard from './components/NewCardView'
 import NewQuiz from './components/NewQuizView'
 import styles from './utils/styles'
+import { setLocalNotification } from './utils/helpers'
 import { white, black, red, green, shadow } from './utils/colors'
 
 const Tabs = TabNavigator({
@@ -84,6 +85,7 @@ const MainNavigator = StackNavigator({
 export default class App extends Component {
 
   componentDidMount(){
+    setLocalNotification()
     addInitialDecks().done(
       getDecks().done((t)=>{
         this.setState(t);
