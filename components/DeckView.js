@@ -24,7 +24,6 @@ class DeckView extends Component {
     }
 
     renderDeck(deckId) {
-        // debugger;
         const { questions } = this.state[deckId] ? this.state[deckId] : {questions:[]}
         return (<View style={styles.container}>
             <Text style={styles.bigTitle}>
