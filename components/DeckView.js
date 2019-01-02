@@ -9,12 +9,6 @@ class DeckView extends Component {
         this.setState(t);
       })
     }
-    
-    componentWillUpdate() {
-      getDecks().done((t)=>{
-        this.setState(t);
-      })  
-    }
 
     static navigationOptions = ({ navigation }) => {
         const { deckId } = navigation.state.params
@@ -37,13 +31,13 @@ class DeckView extends Component {
                     Add a card
                 </Text>
             </TouchableOpacity>
-            { questions.length > 0 ? 
+            { questions.length > 0 ?
             <TouchableOpacity style={styles.blackBtn} onPress={() => this.props.navigation.navigate('NewQuiz', { deckId })}>
                 <Text style={styles.whiteTxt}>
                     Start a quiz
                 </Text>
             </TouchableOpacity> : <View></View>
-            
+
         }
         </View>)
     }
@@ -52,9 +46,9 @@ class DeckView extends Component {
     render () {
         const { deckId } = this.props.navigation.state.params
         return (
-            !!this.state ? 
-                this.renderDeck(deckId)    
-                : <Text>Loading...</Text>  
+            !!this.state ?
+                this.renderDeck(deckId)
+                : <Text>Loading...</Text>
         )
     }
 }
