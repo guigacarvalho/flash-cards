@@ -1,3 +1,5 @@
+[![Build status](https://build.appcenter.ms/v0.1/apps/0d0ea840-5011-4ae4-b601-2eaee730eac2/branches/master/badge)](https://appcenter.ms)
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
