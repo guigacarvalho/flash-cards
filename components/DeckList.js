@@ -9,13 +9,13 @@ class DeckList extends Component {
         this.setState(t);
       })
     }
-    
+
     componentWillUpdate() {
       getDecks().done((t)=>{
         this.setState(t);
       })
     }
-  
+
     navigateHome = () => {
       this.props.navigation.dispatch(NavigationActions.back({key: 'AddEntry'}))
     }
@@ -41,7 +41,7 @@ class DeckList extends Component {
                 Decks List
             </Text>
                 {
-                  !!this.state ? 
+                  !!this.state ?
                     this.renderDeckList()
                     : <Text>Loading...</Text>
                 }
@@ -49,5 +49,5 @@ class DeckList extends Component {
           );
     }
   }
-  
+
 export default DeckList
