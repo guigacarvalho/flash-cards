@@ -19,9 +19,9 @@
     [[ExpoKit sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     _rootViewController = [ExpoKit sharedInstance].rootViewController;
     _window.rootViewController = _rootViewController;
-
+    [AppCenterReactNative register];  // Initialize AppCenter
     [_window makeKeyAndVisible];
-    
+
     return YES;
 }
 
