@@ -1,6 +1,11 @@
 // Copyright 2015-present 650 Industries. All rights reserved.
 
 #import "AppDelegate.h"
+#import <AppCenterReactNativeAnalytics/AppCenterReactNativeAnalytics.h>
+#import <AppCenterReactNative/AppCenterReactNative.h>
+#import <AppCenterReactNativePush/AppCenterReactNativePush.h>
+#import <AppCenterReactNativeAnalytics/AppCenterReactNativeAnalytics.h>
+#import <AppCenterReactNativeCrashes/AppCenterReactNativeCrashes.h>
 #import "ExpoKit.h"
 #import "EXViewController.h"
 
@@ -14,12 +19,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    NSURL *jsCodeLocation;
+
+  [AppCenterReactNative register];  // Initialize AppCenter 
+    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+    _window = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
+                                                        moduleName:@"homeDepot"
+                                                initialProperties:nil
+                                                    launchOptions:launchOptions];
     _window.backgroundColor = [UIColor whiteColor];
     [[ExpoKit sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     _rootViewController = [ExpoKit sharedInstance].rootViewController;
     _window.rootViewController = _rootViewController;
     [AppCenterReactNative register];  // Initialize AppCenter
+    [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:true];  // Initialize AppCenter analytics
+    [AppCenterReactNativeCrashes registerWithAutomaticProcessing];  // Initialize AppCenter crashes
+    [AppCenterReactNativePush register];  // Initialize AppCenter push' after for AppCenter SDK integration.
     [_window makeKeyAndVisible];
 
     return YES;
